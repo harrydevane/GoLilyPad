@@ -1,4 +1,4 @@
-package v119
+package v120
 
 import (
 	"github.com/LilyPad/GoLilyPad/packet"
@@ -105,6 +105,10 @@ func (this *CodecClientJoinGame) Decode(reader io.Reader) (decode packet.Packet,
 			Position:  deathLocationPosition,
 		}
 	}
+	packetClientJoinGame.PortalCooldown, err = packet.ReadVarInt(reader)
+	if err != nil {
+		return
+	}
 	decode = packetClientJoinGame
 	return
 }
@@ -194,5 +198,9 @@ func (this *CodecClientJoinGame) Encode(writer io.Writer, encode packet.Packet) 
 		}
 		err = packet.WriteInt64(writer, packetClientJoinGame.DeathLocation.Position)
 	}
+	if err != nil {
+		return
+	}
+	err = packet.WriteVarInt(writer, packetClientJoinGame.PortalCooldown)
 	return
 }

@@ -17,8 +17,9 @@ type PacketClientRespawn struct {
 	LevelType        string    // removed in 1.16+
 	IsDebug          bool      // 1.16+
 	IsFlat           bool      // 1.16+
-	DeathLocation    *Location // 1.19+
 	CopyMetadata     bool      // 1.16+
+	DeathLocation    *Location // 1.19+
+	PortalCooldown   int       // 1.20+
 }
 
 func NewPacketClientRespawnFrom(idMap *IdMap, joinGame *PacketClientJoinGame) (this *PacketClientRespawn) {
@@ -35,8 +36,9 @@ func NewPacketClientRespawnFrom(idMap *IdMap, joinGame *PacketClientJoinGame) (t
 	this.LevelType = joinGame.LevelType
 	this.IsDebug = joinGame.IsDebug
 	this.IsFlat = joinGame.IsFlat
-	this.DeathLocation = joinGame.DeathLocation
 	this.CopyMetadata = false
+	this.DeathLocation = joinGame.DeathLocation
+	this.PortalCooldown = joinGame.PortalCooldown
 	return
 }
 

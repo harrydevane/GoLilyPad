@@ -27,6 +27,7 @@ type PacketClientJoinGame struct {
 	IsFlat              bool      // 1.16+
 	SimulationDistance  int       // 1.18+
 	DeathLocation       *Location // 1.19+
+	PortalCooldown      int       // 1.20+
 }
 
 func (this *PacketClientJoinGame) IdFrom(idMap *IdMap) {
